@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { databaseOptions } from './config/datasource';
+import { UsuarioModule } from './modules/usuario/usuario.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { databaseOptions } from './config/datasource';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: () => databaseOptions()
-    })
+    }),
+    UsuarioModule
   ],
   controllers: [AppController],
   providers: [AppService],
