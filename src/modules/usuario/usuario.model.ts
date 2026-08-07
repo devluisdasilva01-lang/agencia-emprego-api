@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity("usuarios")
 export class UsuarioModel {
@@ -18,5 +18,8 @@ export class UsuarioModel {
     urlFoto: string
 
     @Column()
+    ativo: boolean
+
+    @CreateDateColumn({name: "dt_cadastro"})
     dataCadastro: Date 
 }
