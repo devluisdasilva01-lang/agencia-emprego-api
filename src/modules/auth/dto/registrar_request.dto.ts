@@ -1,6 +1,6 @@
 import { IsEmail, IsNotEmpty, MinLength } from "class-validator";
 
-export class RegistrarResquestDto {
+export class RegistrarRequestDto {
 
     @IsNotEmpty({message: "Campo nome não pode ser nulo!"})
     nome: string
