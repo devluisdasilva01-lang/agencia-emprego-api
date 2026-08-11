@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { UsuarioModel } from './usuario.model';
 import { RegistrarRequestDto } from '../auth/dto/registrar_request.dto';
 import bcrypt from 'bcrypt';
+import { UsuarioResponseDto } from './dto/usuario_response.dto';
 
 
 @Injectable()
@@ -31,6 +32,16 @@ export class UsuarioService {
 
     async buscarUsuarioPorEmail(email: string): Promise<UsuarioModel | null> {
         return await this.usuarioRepository.findOneBy({email})
+    }
+
+    async buscarUsuarioPorId(idUsuario: string): Promise<UsuarioResponseDto | null> {
+        const usuario = await this.usuarioRepository.findOneBy({id: idUsuario})
+
+        return ({
+            email:usuario!.email,
+            nome: usuario!.nome,
+            urlFoto: usuario!.urlFoto
+        })
     }
     
 }
