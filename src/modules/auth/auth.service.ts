@@ -3,11 +3,13 @@ import { UsuarioService } from '../usuario/usuario.service';
 import { RegistrarRequestDto } from './dto/registrar_request.dto';
 import bcrypt from 'bcrypt';
 import { LogarRequestDto } from './dto/logar_request.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
     constructor(
-        private readonly usuarioService: UsuarioService
+        private readonly usuarioService: UsuarioService,
+        private readonly jwtService: JwtService
     ) {}
 
     async registrarUsuario(request: RegistrarRequestDto ): Promise<void> {
@@ -21,6 +23,10 @@ export class AuthService {
         const validarSenha = await bcrypt.compare(data.senha, usuario.senha)
         if(!validarSenha) throw new BadRequestException("Usuário ou senha inválidos!")
 
-        return {token: "token_temporario"}
+        const token = await this.jwtService.signAsync({
+            sub: usuario.id
+        })
+
+        return {token}
     }
 }
