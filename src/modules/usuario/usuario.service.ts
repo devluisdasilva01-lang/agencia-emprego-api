@@ -14,9 +14,7 @@ export class UsuarioService {
     ) {}
 
     async addUsuario(request: RegistrarRequestDto): Promise<void> {
-        const usuario = await this.usuarioRepository.findOneBy({
-            email: request.email
-        })
+        const usuario = await this.buscarUsuarioPorEmail(request.email)
 
         if(usuario) throw new BadRequestException("Usuário já cadastrado no sistema!")
 
@@ -28,8 +26,11 @@ export class UsuarioService {
             ativo: true,
             urlFoto: 'default.png',
             dataCadastro: new Date()
-        })
+        }) 
     }
 
+    async buscarUsuarioPorEmail(email: string): Promise<UsuarioModel | null> {
+        return await this.usuarioRepository.findOneBy({email})
+    }
     
 }

@@ -12,7 +12,6 @@ export class AuthController {
 
     @Post("/registrar")
     async registrar(@Body() request: RegistrarRequestDto): Promise<void> {
-        await this.usuarioService.addUsuario(request)
     }
 
     @Post("/logar")
