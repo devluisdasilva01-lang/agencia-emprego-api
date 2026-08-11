@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { databaseOptions } from './config/datasource';
 import { UsuarioModule } from './modules/usuario/usuario.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { AgenciaModule } from './modules/agencia/agencia.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { AuthModule } from './modules/auth/auth.module';
       useFactory: () => databaseOptions()
     }),
     UsuarioModule,
-    AuthModule
+    AuthModule,
+    AgenciaModule
   ],
   controllers: [AppController],
   providers: [AppService],
