@@ -1,4 +1,5 @@
 import { DataSourceOptions } from "typeorm";
+import { join } from "path";
 
 export function databaseOptions(): DataSourceOptions {
   return {
@@ -8,12 +9,12 @@ export function databaseOptions(): DataSourceOptions {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
-    // entities: [
-    //   join(__dirname, '..', 'modules', '**','*.model{.ts,.js}'),
-    // ],
-    // migrations: [
-    //   join(__dirname, '..', 'migrations', '*{.ts,.js}'),
-    // ],
-    // migrationsRun: true
+     entities: [
+       join(__dirname, '..', 'modules', '**','*.model{.ts,.js}'),
+     ],
+     migrations: [
+       join(__dirname, '..', 'migrations', '*{.ts,.js}'),
+     ],
+     migrationsRun: true
   };
 }
