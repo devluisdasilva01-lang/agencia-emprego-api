@@ -6,4 +6,4 @@ import { AgenciaService } from './agencia.service';
   controllers: [AgenciaController],
   providers: [AgenciaService]
 })
-export class AgenciaModule {}
+export class AgenciaModule {} 
